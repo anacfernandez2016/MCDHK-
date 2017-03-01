@@ -10,7 +10,7 @@ JOIN MCDHK.DBO.STORES ON SSTORE = STORE
 GROUP BY STORE, SNAME, SSTATUS
 ORDER BY MAX (PERIOD) 
 
---If store is here there is a big change is closed, check with client to confirm---
+--If store is here there is a big chance is closed. Check with client to confirm---
 SELECT * FROM #ClosedStores
 WHERE SSTATUS LIKE '%OPEN%'
 AND MAXPERIOD <'2017-01-31' --Entered last day of data
