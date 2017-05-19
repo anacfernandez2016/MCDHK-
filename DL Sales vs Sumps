@@ -24,3 +24,56 @@ group by year(period), month (period)
 ) yy on xx.[month] = yy.[month] and xx.[Year] = yy.[Year]
 order by 2,1
 
+--///////////////////////////////////////////////////////////////////////////////////////--
+--MDS
+--///////////////////////////////////////////////////////////////////////////////////////--
+
+select coalesce (xx.[month], yy.[Month])Yr, coalesce (yy.[Year], xx.[Year])Mth, [Sumps Sales] , [DL Sales]
+, ([Sumps Sales] /cast ([DL Sales] as float))-1 as [difference] 
+, [Sumps GC], [DL GC]
+, ([Sumps GC] /cast ([DL GC] as float))-1 as [difference] 
+from 
+(
+select year(period)[Year], month (period) [Month], sum (TP)[Sumps Sales] , sum (Trans) [Sumps GC]
+from mcdhk.dbo.sumps
+where period >= '2015-01-01' 
+and center = 2
+group by year(period),  month (period) 
+) xx 
+full join
+(
+select year (period) [Year], month (period) [Month], sum (GrossSales)[DL Sales], sum (TC) [DL GC]
+from mcdhkdl.dataload.dlsaleshistory 
+where period >= '2015-01-01' 
+and center = 2
+group by year(period), month (period) 
+) yy on xx.[month] = yy.[month] and xx.[Year] = yy.[Year]
+order by 2,1
+
+
+--///////////////////////////////////////////////////////////////////////////////////////--
+--McCafe
+--///////////////////////////////////////////////////////////////////////////////////////--
+
+select distinct xx.[month], yy.[Year], [Sumps Sales] , [DL Sales]
+, ([Sumps Sales] /cast ([DL Sales] as float))-1 as [difference] 
+, [Sumps GC], [DL GC]
+, ([Sumps GC] /cast ([DL GC] as float))-1 as [difference] 
+from 
+(
+select year(period)[Year], month (period) [Month], sum (TP)[Sumps Sales] , sum (Trans) [Sumps GC]
+from mcdhk.dbo.sumps
+where period >= '2015-01-01' 
+and center = 3
+group by year(period),  month (period) 
+) xx 
+full join
+(
+select year (period) [Year], month (period) [Month], sum (GrossSales)[DL Sales], sum (TC) [DL GC]
+from mcdhkdl.dataload.dlsaleshistory 
+where period >= '2015-01-01'
+and center = 3
+group by year(period), month (period) 
+) yy on xx.[month] = yy.[month] and xx.[Year] = yy.[Year]
+order by 2,1
+
