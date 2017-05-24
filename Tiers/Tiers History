@@ -1,0 +1,4 @@
+
+All information related to tier and tier evolution/history has been stored in the following tables:
+mcdhk.Tiers.TierHistory
+mcdhk.TierHistoryDetail
