@@ -1,7 +1,11 @@
-## McCafe = Center 3
+# McCafe = Center 3
 
-From 2015 McCafe does not construct any combo. No construction is needed for this center.
-Combos do exist but they are formed by pressing the drink and they the discounted price food items. 
+Core Items  for this center are saved in the following table: McDHK.[CoreItems].[McCafe_20170523]
+
+# Combos and Construction Rules 
+From 2015 McCafe does not construct any combos.
+Combos do exist but they are formed by pressing the drink key and the discounted key for the food product.
+
 For example:
-Get a Flat White (Item 1) and Add a Croissant (Item 869) at discounted prices. This what they would call a McCafe Combo. From our side
+Get a Flat White (Item 1) and add a Croissant (Item 869) at discounted price. This what they would call a McCafe Combo. From our side
 no contruction is need for this combo.
