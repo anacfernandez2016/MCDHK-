@@ -1,0 +1,17 @@
+Item Master file from client 
+How does IT manipulate this data: 
+
+o	Yes, we do receive the “090ITEM” file from the client. 
+	When we import the data that data is put in the MCDHKDL.Dataload.DLItemsImportNew table. 
+	We then delete records where the [Item No] column is NULL.
+	If there are any duplicate item numbers in that table we pull those out and insert them into MCDHKDL.Dataload.DLItemsNewDups.
+	Otherwise we insert the item information into MCDHKDL.Dataload.DLItemsNew.
+-	1.3 Item Changes
+o	This compares DBO.Items to MCDHKDL.Dataload.DLItems.
+o	If we back track this data, it comes from the “Rms-pmix-item-table” file that we receive from the client. 
+	When we import the data that data is put in the MCDHKDL.Dataload.DLItemsImport table. 
+	We insert the item information into MCDHKDL.Dataload.DLItems.
+
+The main difference is that:
+-	the “090Items” file ends up in the MCDHKDL.Dataload.DLItemsNew.
+-	the “Rms-pmix-item-table” file ends up in the MCDHKDL.Dataload.DLItems. 
